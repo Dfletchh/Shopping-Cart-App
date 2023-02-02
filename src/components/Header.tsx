@@ -1,7 +1,11 @@
-import React from "react";
+type PropsType = {
+  viewCart: boolean
+  setViewCart: React.Dispatch<React.SetStateAction<boolean>>
+}
 
-const header = () => {
-  return <div>header</div>;
-};
+const header = ({ viewCart, setViewCart }: PropsType) => {
+  const content = {}
+  return <div>header</div>
+}
 
-export default header;
+export default header
