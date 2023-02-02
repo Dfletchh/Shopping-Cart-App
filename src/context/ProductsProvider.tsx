@@ -27,16 +27,16 @@ cosnt initState: ProductType[] = []
 //     }
 // ]
 
-// Context Type
+// context type for product
 export type UseProductsContextType = { products: ProductType[] }
 
 const initContextState: UseProductsContextType = { products: [] }
 const ProductsContext = createContext<UseProductsContextType>(initContextState)
 
-// Children Type
+// children Type
 type ChildrenType = { children?: ReactElement | ReactElement[] }
 
-// Create Provider
+// create Provider
 export const ProductProvider = ({ children }: ChildrenType): ReactElement => {
     const [products, setProducts] = useState<ProductType[]>(initState)
 

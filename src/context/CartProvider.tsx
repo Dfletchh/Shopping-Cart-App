@@ -1,4 +1,4 @@
-import { useReducer } from 'react'
+import { useReducer, useMemo, createContext, ReactElement } from 'react'
 
 export type CartItemType = {
     sku: string,
@@ -139,9 +139,9 @@ const useCartContext = (initCartState: CartStateType) => {
     return { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, cart }
 }
 
-export type useCartContextType = ReturnType<typeof useCartContext>
+export type UseCartContextType = ReturnType<typeof useCartContext>
 
-const initCartContextState: useCartContextType = {
+const initCartContextState: UseCartContextType = {
     dispatch: () => {},
     REDUCER_ACTIONS: REDUCER_ACTION_TYPE,
     totalItems: 0,
@@ -149,4 +149,16 @@ const initCartContextState: useCartContextType = {
     cart: [],
 }
 
-export const CartContext = createContext<useCartContextType>(initCartContextState)
+export const CartContext = createContext<UseCartContextType>(initCartContextState)
+
+type ChildrenType = { children?: ReactElement | ReactElement[] }
+
+export const CartProvider = ({ children }: ChildrenType): ReactElement => {
+    return (
+        <CartContext.Provider value={useCartContext(initCartState)}>
+            {children}
+        </CartContext.Provider>
+    )
+}
+
+export default CartContext
