@@ -3,49 +3,48 @@ import useCart from "../hooks/useCart"
 import CartLineItem from "./CartLineItem"
 
 const Cart = () => {
-    const [confirm, setConfirm] = useState<boolean>(false)
-    const { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, cart } =
-        useCart()
+  const [confirm, setConfirm] = useState<boolean>(false)
+  const { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, cart } = useCart()
 
-    const onSubmitOrder = () => {
-        dispatch({ type: REDUCER_ACTIONS.SUBMIT })
-        setConfirm(true)
-    }
+  const onSubmitOrder = () => {
+    dispatch({ type: REDUCER_ACTIONS.SUBMIT })
+    setConfirm(true)
+  }
 
-    const pageContent = confirm ? (
-        <h2>Thank you for your order.</h2>
-    ) : (
-        <>
-            <h2 className='offscreen'>Cart</h2>
-            <ul className='cart'>
-                {cart.map((item) => {
-                    return (
-                        <CartLineItem
-                            key={item.sku}
-                            item={item}
-                            dispatch={dispatch} // has referential equality, no page refresh
-                            REDUCER_ACTIONS={REDUCER_ACTIONS} // memoized, no page refresh
-                        />
-                    )
-                })}
-            </ul>
-            <div className='cart__totals'>
-                <p>Total Items: {totalItems}</p>
-                <p>Total Price: {totalPrice}</p>
-                <button
-                    className='cart__submit'
-                    disabled={!totalItems} // if no items tehn disabled set to true
-                    onClick={onSubmitOrder}
-                >
-                    Place Order
-                </button>
-            </div>
-        </>
-    )
+  const pageContent = confirm ? (
+    <h2>Thank you for your order.</h2>
+  ) : (
+    <>
+      <h2 className='offscreen'>Cart</h2>
+      <ul className='cart'>
+        {cart.map((item) => {
+          return (
+            <CartLineItem
+              key={item.sku}
+              item={item}
+              dispatch={dispatch} // has referential equality, no page refresh
+              REDUCER_ACTIONS={REDUCER_ACTIONS} // memoized, no page refresh
+            />
+          )
+        })}
+      </ul>
+      <div className='cart__totals'>
+        <p>Total Items: {totalItems}</p>
+        <p>Total Price: {totalPrice}</p>
+        <button
+          className='cart__submit'
+          disabled={!totalItems} // if no items tehn disabled set to true
+          onClick={onSubmitOrder}
+        >
+          Place Order
+        </button>
+      </div>
+    </>
+  )
 
-    const content = <main className='main main--cart'>{pageContent}</main>
+  const content = <main className='main main--cart'>{pageContent}</main>
 
-    return content
+  return content
 }
 
 export default Cart
