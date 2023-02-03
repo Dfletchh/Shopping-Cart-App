@@ -2,7 +2,7 @@ import useCart from "../hooks/useCart"
 
 type PropsType = { viewCart: boolean }
 
-const footer = ({ viewCart }: PropsType) => {
+const Footer = ({ viewCart }: PropsType) => {
   const { totalItems, totalPrice } = useCart()
 
   const year: number = new Date().getFullYear()
@@ -21,4 +21,4 @@ const footer = ({ viewCart }: PropsType) => {
   return content
 }
 
-export default footer
+export default Footer

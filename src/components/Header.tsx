@@ -17,12 +17,12 @@ const Header = ({ viewCart, setViewCart }: PropsType) => {
           <p>Total Items: {totalItems}</p>
           <p>Total Price: {totalPrice}</p>
         </div>
-        <Nav viewCart={viewCart} setViewCart={setViewCart} />
       </div>
+      <Nav viewCart={viewCart} setViewCart={setViewCart} />
     </header>
   )
 
-  return <div>header</div>
+  return content
 }
 
 export default Header
